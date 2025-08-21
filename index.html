@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicks By Sagnik</title>
+    <!-- Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="fav.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20G+WJL3G0uK5S1+lK8zLhV+Q4+5L+3+S+O+d4eW7+S/S+O+C/pC8/pC8/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4B5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6B7280;
+        }
+        
+        /* Unique hover effect for gallery images */
+        .gallery-image {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            width: 100%;
+            height: auto;
+        }
+        .gallery-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        /* Hero text animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fadeInUp 1s ease-out 0.5s forwards; }
+
+        /* Multi-column layouts for galleries */
+        .gallery-container {
+            column-count: 1;
+            column-gap: 1.5rem; /* Tailwind's gap-6 */
+        }
+        @media (min-width: 640px) {
+            .gallery-container { column-count: 2; }
+        }
+        @media (min-width: 1024px) {
+            .gallery-container { column-count: 3; }
+        }
+        
+        /* Two-column layout specifically for landscapes and insects */
+        .gallery-container-2-col {
+            column-count: 1;
+            column-gap: 1.5rem; /* Same gap as other galleries */
+        }
+        @media (min-width: 640px) {
+            .gallery-container-2-col { column-count: 2; }
+        }
+        @media (min-width: 1024px) {
+            .gallery-container-2-col { column-count: 2; } /* Keep it at 2 columns on large screens */
+        }
+        
+        .gallery-item {
+            display: inline-block; /* Required for column layout */
+            width: 100%;
+            break-inside: avoid; /* Prevent images from breaking across columns */
+            margin-bottom: 1.5rem; /* Spacing between images */
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200">
+
+    <!-- Hero Section with Abstract Background & Collage Placeholder -->
+    <header class="h-screen flex flex-col justify-center items-center text-center p-6 relative overflow-hidden">
+        <!-- Abstract background pattern with shadow overlay -->
+        <div class="absolute inset-0 z-0">
+            <!-- Collage Image Placeholder - Replace this URL with your actual collage -->
+            <img src="BG.jpg" alt="Abstract Background" class="w-full h-full object-cover">
+            <!-- Shadow Overlay -->
+            <div class="absolute inset-0 bg-gray-950/70"></div>
+        </div>
+        <div class="relative z-10 flex flex-col items-center">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold mb-4 animate-fade-in">Clicks By Sagnik</h1>
+            <p class="text-lg sm:text-xl md:text-2xl font-light max-w-2xl animate-fade-in-up">📷 Turning clicks into timeless frames</p>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-gray-950/80 backdrop-blur-sm shadow-lg py-4">
+        <ul class="flex justify-center flex-wrap gap-4 sm:gap-8 text-sm sm:text-base font-semibold">
+            <li><a href="#best-pics" class="hover:text-amber-500 transition-colors duration-300">Best Pics</a></li>
+            <li><a href="#landscapes" class="hover:text-amber-500 transition-colors duration-300">Landscapes</a></li>
+            <li><a href="#insects" class="hover:text-amber-500 transition-colors duration-300">Insects</a></li>
+            <li><a href="#portrait" class="hover:text-amber-500 transition-colors duration-300">Portrait</a></li>
+            <li><a href="#about" class="hover:text-amber-500 transition-colors duration-300">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content with Outer Padding -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-12 py-16">
+
+        <!-- Best Pics Gallery -->
+        <section id="best-pics" class="my-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-amber-400 mb-12">Best Shots</h2>
+            <div id="best-pics-gallery" class="gallery-container">
+                <!-- Gallery images will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Landscapes Gallery -->
+        <section id="landscapes" class="my-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-amber-400 mb-12">Landscapes</h2>
+            <div id="landscapes-gallery" class="gallery-container-2-col">
+                <!-- Gallery images will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Insects Gallery -->
+        <section id="insects" class="my-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-amber-400 mb-12">Insects</h2>
+            <div id="insects-gallery" class="gallery-container-2-col">
+                <!-- Gallery images will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Portrait Gallery -->
+        <section id="portrait" class="my-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-amber-400 mb-12">Portrait</h2>
+            <div id="portrait-gallery" class="gallery-container">
+                <!-- Gallery images will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="my-24 py-12 px-6 bg-gray-900 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center justify-center gap-12">
+            <div class="md:w-1/3 flex justify-center">
+                <img src="https://live.staticflickr.com/65535/54733975964_10eb0e7d31_b.jpg" alt="Sagnik Gope"
+                     class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-gray-700 shadow-xl">
+            </div>
+            <div class="md:w-2/3 text-center md:text-left">
+                <h2 class="text-3xl sm:text-4xl font-bold text-amber-400 mb-4">About Me</h2>
+                <p class="text-base sm:text-lg text-gray-400 leading-relaxed">
+                    My name is Sagnik Gope, and I'm currently working at Cognizant after completing my B.Tech in CSE from Guru Nanak Institute of Technology. While my professional life is in technology, my true passion lies in photography. It's a journey I started back in Class 10 with just my mobile phone, and through it, I've learned so much about the world and myself. I'm still learning every day and am always looking to share my unique perspective with the world through my lens.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 text-center text-gray-500 text-sm rounded-t-3xl shadow-inner mt-12">
+        <div class="flex justify-center items-center gap-6 mb-4">
+            <a href="https://www.facebook.com/sagnik.gope/" target="_blank" aria-label="Facebook" class="text-gray-400 hover:text-amber-500 transition-colors duration-300">
+                <i class="fa-brands fa-facebook-f fa-2x"></i>
+            </a>
+            <a href="https://www.instagram.com/clicksbysagnik/" target="_blank" aria-label="Instagram" class="text-gray-400 hover:text-amber-500 transition-colors duration-300">
+                <i class="fa-brands fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://www.flickr.com/people/203349334@N05/" target="_blank" aria-label="Flickr" class="text-gray-400 hover:text-amber-500 transition-colors duration-300">
+                <i class="fa-brands fa-flickr fa-2x"></i>
+            </a>
+            <a href="https://photos.app.goo.gl/9nuR843kB52fP6XXA" target="_blank" aria-label="Google Photos" class="text-gray-400 hover:text-amber-500 transition-colors duration-300">
+                <i class="fa-solid fa-link fa-2x"></i>
+            </a>
+        </div>
+        <p>&copy; <span id="current-year"></span> Clicks By Sagnik. All rights reserved.</p>
+        <p class="mt-2">Designed and Developed by Sagnik Gope</p>
+    </footer>
+
+    <script>
+        // =========================================================================
+        // IMPORTANT: IMAGE URLS - KEEP THESE TO YOUR OWN PHOTO URLs
+        // =========================================================================
+        const bestPics = [
+            "https://live.staticflickr.com/65535/54734016484_901259222b_b.jpg",
+            "https://live.staticflickr.com/65535/54734144105_94322532a9_b.jpg",
+            "https://live.staticflickr.com/65535/54734145275_200b43804a_b.jpg",
+            "https://live.staticflickr.com/65535/54734142435_b11992851b_b.jpg",
+            "https://live.staticflickr.com/65535/54734016809_9316500a28_b.jpg",
+            "https://live.staticflickr.com/65535/54732945687_daac5b002d_b.jpg",
+            "https://live.staticflickr.com/65535/54732949257_741f00e24d_b.jpg",
+            "https://live.staticflickr.com/65535/54733781691_5fb7414888_b.jpg",
+            "https://live.staticflickr.com/65535/54733993853_573ca5e18b_b.jpg",
+            "https://live.staticflickr.com/65535/54733778931_a1f961334d_b.jpg",
+            "https://live.staticflickr.com/65535/54734014539_30d1c0420a_b.jpg"
+        ];      
+        
+        const landscapes = [
+            "https://live.staticflickr.com/65535/54732951512_290ab24a05_b.jpg",
+            "https://live.staticflickr.com/65535/54734013304_db7e8faa95_b.jpg",
+            "https://live.staticflickr.com/65535/54733994368_ee7f55312e_b.jpg",
+            "https://live.staticflickr.com/65535/54733998068_4b7b362a0f_b.jpg",
+            "https://live.staticflickr.com/65535/54734015004_da1dbb1d5c_b.jpg",
+            "https://live.staticflickr.com/65535/54733994218_4b0210faa0_b.jpg",
+            "https://live.staticflickr.com/65535/54734147205_f156230b5b_b.jpg",
+            "https://live.staticflickr.com/65535/54733996893_6926c77f79_b.jpg"
+        ];
+        
+        const insects = [
+            "https://live.staticflickr.com/65535/54734016494_eaa2f5abdd_b.jpg",
+            "https://live.staticflickr.com/65535/54732944677_bd26c7d9d9_b.jpg",
+            "https://live.staticflickr.com/65535/54733781556_33fcce38e1_b.jpg",
+            "https://live.staticflickr.com/65535/54732949357_114e437b62_b.jpg",
+        ];
+        
+        const portraits = [
+            "https://live.staticflickr.com/65535/54733995308_b4d313e3d1_b.jpg",
+            "https://live.staticflickr.com/65535/54734000798_e0a9574893_b.jpg",
+            "https://live.staticflickr.com/65535/54733998643_ff04db30ba_b.jpg",
+            "https://live.staticflickr.com/65535/54734000448_5da4507807_b.jpg",
+            "https://live.staticflickr.com/65535/54734140725_05c302086b_b.jpg",
+            
+            
+            
+            "https://live.staticflickr.com/65535/54732951487_8b23f02df0_b.jpg"    
+        ];
+        // =========================================================================
+        // END OF IMAGE URL SECTION
+        // =========================================================================
+
+        window.onload = function() {
+            // Set current year for the footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Function to dynamically create gallery images
+            function createGallery(images, containerId) {
+                const container = document.getElementById(containerId);
+                images.forEach(url => {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = 'Photography by Sagnik';
+                    img.loading = 'lazy'; // Lazy load images
+                    img.className = 'w-full h-auto rounded-xl shadow-lg object-cover gallery-image';
+                    div.appendChild(img);
+                    container.appendChild(div);
+                });
+            }
+
+            // Populate all galleries, using the appropriate function
+            createGallery(bestPics, 'best-pics-gallery');
+            createGallery(landscapes, 'landscapes-gallery');
+            createGallery(insects, 'insects-gallery'); // Now uses the standard gallery function
+            createGallery(portraits, 'portrait-gallery');
+        };
+    </script>
+</body>
+</html>
